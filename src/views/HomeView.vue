@@ -3,19 +3,24 @@ import photos from "../components/photos.vue";
 export default {
   name:"Home",
   components:{ photos },
+  methods:{
+    removePhoto(id){
+     this.photos= this.photos.filter((photo)=> photo.id !==id);
+    },
+  },
   data(){
     return {
       photos:[
         {
           id: 1,
           name: "Rose",
-          img:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ARose_flower.jpg&psig=AOvVaw1DrNVclwVSOI_ZaWJA8Vld&ust=1671112098196000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCMCZ9-mf-fsCFQAAAAAdAAAAABAG",
+          img: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Rose_flower.jpg",
           isFavorite: true,
         },
         {
           id: 2,
           name: "Orchid",
-          img:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.serenataflowers.com%2Fpollennation%2Fhow-to-care-for-orchids%2F&psig=AOvVaw0si0iuK8IOgw7gnx5BBIY2&ust=1671112297352000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCPD62Mig-fsCFQAAAAAdAAAAABAG",
+          img:"https://blog.serenataflowers.com/pollennation/wp-content/uploads/2015/04/how-to-care-for-orchids-FT.png",
           isFavorite: false,
         },
       ],
@@ -27,5 +32,5 @@ export default {
 <template>
   <div class="home">
   </div>
-  <photos v-bind:photos="photos"/>
+  <photos @remove-photo="removePhoto" v-bind:photos="photos"/>
 </template>

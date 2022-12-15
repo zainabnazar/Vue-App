@@ -1,7 +1,7 @@
 <template>
   <div class="photos">
       <div v-for="photo in photos" :key="photo.id">
-          <photo :photo="photo"/>
+          <photo @remove-photo="$emit('remove-photo',photo.id)" :photo="photo"/>
       </div>
   </div>
 </template>
@@ -13,8 +13,8 @@ export default {
     props:{
         photos: Array,
     },
-    components:{photo}
-
+    components:{photo},
+    emits: ["remove-photo"],
 }
 </script>
 
