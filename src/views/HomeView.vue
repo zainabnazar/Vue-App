@@ -7,24 +7,24 @@ export default {
     removePhoto(id){
      this.photos= this.photos.filter((photo)=> photo.id !==id);
     },
+    async fetchPhotos(){;
+      const res = await fetch("https://639b148631877e43d6818843.mockapi.io/photos")
+      const data = await res.json();
+      return data;
+    },
+    async fetchPhoto(id){;
+      const res = await fetch(`https://639b148631877e43d6818843.mockapi.io/photos/${id}`)
+      const data = await res.json();
+      return data;
+    }
   },
   data(){
     return {
-      photos:[
-        {
-          id: 1,
-          name: "Rose",
-          img: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Rose_flower.jpg",
-          isFavorite: true,
-        },
-        {
-          id: 2,
-          name: "Orchid",
-          img:"https://blog.serenataflowers.com/pollennation/wp-content/uploads/2015/04/how-to-care-for-orchids-FT.png",
-          isFavorite: false,
-        },
-      ],
+      photos:[],
   }
+  },
+  async created(){
+    this.photos= await this.fetchPhotos();
   }
 }
 </script>
